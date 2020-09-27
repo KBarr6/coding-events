@@ -5,7 +5,18 @@
     <title>Coding Events</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
 </head>
+
+<p th:fragment="address">
+    Tech Hub
+    678 Street
+    St. Louis, MO 63043
+</p>
+
+
+
 <body>
 
 <nav th:fragment="header">

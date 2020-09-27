@@ -9,11 +9,15 @@
     <thead>
      <tr>
         <th>Name</th>
+         <th>Description</th>
+         <th>Address</th>
     </tr>
     </thead>
-    <tr th:block th:each="event : ${events}">
-        <td th:text="${event}"></td>
-    </trth:block>
+    <tr  th:each="event : ${events}">
+        <td th:text="${event.key}"></td>
+        <td th:text="${event.value}"></td>
+        <td class="hubaddress" th:replace="fragments :: address"></td>
+    </tr>
 </table>
 
 </body>
