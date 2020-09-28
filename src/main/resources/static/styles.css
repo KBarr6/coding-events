@@ -3,8 +3,15 @@ body {
   color: green;
 }
 
-.hubaddress {
-    text-align: center;
+th {
+   text-align: center;
     color: green;
-
+    font-size: 20px;
 }
+
+td{
+text-align: center;
+color: red;
+font-size 25px;
+}
+
