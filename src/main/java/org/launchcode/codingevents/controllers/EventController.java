@@ -23,11 +23,11 @@ public class EventController {
     public String displayAllEvents(Model model) {
         model.addAttribute("title", "All Events");
         model.addAttribute("events", EventData.getAll());
-          return "events/index";
+        return "events/index";
     }
 
 
-   // private static HashMap<String, String> events = new HashMap<>();
+    // private static HashMap<String, String> events = new HashMap<>();
 
 //    @GetMapping
 //    public String displayAllEvents(Model model){
@@ -36,9 +36,9 @@ public class EventController {
 //    }
 
     @PostMapping("create")
-    public String processCreateEventsForm(@ModelAttribute Event newEvent){
+    public String processCreateEventsForm(@ModelAttribute Event newEvent) {
         EventData.add(newEvent);
-           return "redirect:";
+        return "redirect:";
     }
 
     @GetMapping("create") //lives at /events/create
@@ -55,22 +55,43 @@ public class EventController {
 
 
     @GetMapping("delete")
-        public String displayDeleteEventForm(Model model) {
-            model.addAttribute("title", "Delete Events");
-            model.addAttribute("events", EventData.getAll());
-            return "events/delete";
-            }// lives at /events/delete
+    public String displayDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("events", EventData.getAll());
+        return "events/delete";
+    }// lives at /events/delete
 
     @PostMapping("delete")
-        public String processDeleteEventForm(@RequestParam(required = false) int[] eventIds){
-        if(eventIds != null) {
+    public String processDeleteEventForm(@RequestParam(required = false) int[] eventIds) {
+        if (eventIds != null) {
             for (int id : eventIds) {
                 EventData.remove(id);
             }
         }
-            return "redirect:";
+        return "redirect:";
 
     }
+
+    @GetMapping("edit/{eventId}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        Event event = EventData.getById(eventId);
+        model.addAttribute("event", event);
+        if(event != null) {
+            model.addAttribute("title", "Edit Event " + event.getName() + " (ID=" + event.getId() + ")");
+        }
+        return "events/edit";
     }
+
+    @PostMapping("edit")
+    public String processEditForm(int eventId, String name, String description) {
+        Event event = EventData.getById(eventId);
+        event.setName(name);
+        event.setDescription(description);
+        return "redirect:";
+
+    }
+
+
+}
 
 
