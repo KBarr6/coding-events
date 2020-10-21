@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -37,6 +38,14 @@ public class EventController {
 //        return "events/index";
 //    }
 
+    @GetMapping("create") //lives at /events/create
+    public String renderCreateEventForm(Model model) {
+        model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
+        model.addAttribute("types", EventType.values());
+        return "events/create";
+    }
+
     @PostMapping("create")
     public String processCreateEventsForm(@ModelAttribute @Valid Event newEvent,
                                           Errors errors, Model model){
@@ -48,12 +57,6 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("create") //lives at /events/create
-    public String renderCreateEventForm(Model model) {
-        model.addAttribute("title", "Create Event");
-        model.addAttribute(new Event());
-        return "events/create";
-    }
 
 //    @PostMapping("create") //lives at /events/create
 //    public String createEvent(@RequestParam String eventName){
