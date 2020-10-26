@@ -1,14 +1,13 @@
 package org.launchcode.codingevents.models;
 
-
-import com.fasterxml.jackson.annotation.JsonTypeId;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
 public class Event {
-
 
     @Id
     @GeneratedValue
@@ -46,7 +45,6 @@ public class Event {
     }
 
     public Event() { }
-
 
     public String getName() {
         return name;
